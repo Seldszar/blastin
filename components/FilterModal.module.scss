@@ -1,0 +1,34 @@
+.field {
+  &:not(:last-child) {
+    @apply mb-4;
+  }
+
+  label {
+    @apply block;
+  }
+
+  input,
+  textarea {
+    @apply bg-gray-900 block border-none p-2 rounded w-full;
+
+    &:focus {
+      @apply outline-none shadow-outline;
+    }
+  }
+}
+
+.control {
+  @apply mt-2;
+}
+
+.queryInput {
+  @apply font-mono;
+}
+
+.buttons {
+  @apply -m-1;
+}
+
+.button {
+  @apply m-1;
+}

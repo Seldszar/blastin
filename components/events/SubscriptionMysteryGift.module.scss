@@ -1,0 +1,19 @@
+.wrapper {
+  @apply bg-gray-900 rounded text-sm;
+}
+
+.toggleButton {
+  @apply cursor-pointer flex font-medium items-center leading-none p-3 select-none uppercase;
+
+  .icon {
+    @apply mr-2;
+  }
+}
+
+.recipients {
+  @apply border-gray-800 border-t flex flex-wrap -mx-px p-2;
+}
+
+.recipient {
+  @apply bg-black font-bold m-px px-3 py-1 rounded;
+}

@@ -1,0 +1,15 @@
+.wrapper {
+  @apply overflow-hidden relative;
+}
+
+.inner {
+  @apply h-full overflow-auto;
+}
+
+.scrollButton {
+  @apply absolute bg-teal-500 top-0 cursor-pointer flex font-medium inset-x-0 items-center justify-center leading-none m-4 p-2 rounded text-sm uppercase;
+
+  &:hover {
+    @apply bg-teal-400;
+  }
+}

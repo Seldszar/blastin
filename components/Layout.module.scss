@@ -1,0 +1,15 @@
+.wrapper {
+  @apply flex h-full;
+}
+
+.sidebar {
+  @apply flex-none overflow-auto;
+}
+
+.main {
+  @apply bg-gray-800 flex-1 overflow-auto;
+}
+
+.scrollButton {
+  @apply bg-teal-500 top-0 cursor-pointer fixed flex h-12 items-center justify-center leading-none m-4 right-0 rounded-full shadow-md text-3xl w-12;
+}

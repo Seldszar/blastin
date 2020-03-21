@@ -1,0 +1,43 @@
+.wrapper {
+  @apply flex h-16 items-center leading-snug;
+}
+
+.profileImage {
+  @apply flex-none overflow-hidden self-stretch w-16;
+
+  img {
+    @apply h-full object-center object-cover w-full;
+  }
+}
+
+.streamInfo {
+  @apply flex flex-1 overflow-hidden px-2;
+}
+
+.streamUptime,
+.viewerCount,
+.gameName,
+.streamTitle {
+  @apply px-2;
+
+  header {
+    @apply text-gray-600 text-sm;
+  }
+}
+
+.gameName,
+.streamTitle {
+  @apply truncate;
+}
+
+.gameName {
+  max-width: 25%;
+}
+
+.streamTitle {
+  @apply flex-1;
+}
+
+.offlineMessage {
+  @apply flex-1 font-medium px-4 text-gray-500;
+}

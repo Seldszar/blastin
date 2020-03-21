@@ -1,0 +1,51 @@
+.wrapper {
+  @apply flex leading-snug p-4 rounded;
+
+  &.interactive {
+    @apply cursor-pointer;
+
+    &:hover {
+      @apply bg-gray-700;
+    }
+  }
+}
+
+.icon {
+  @apply flex-none mr-4 text-2xl;
+}
+
+.inner {
+  @apply flex-1;
+}
+
+.level {
+  @apply flex;
+}
+
+.left {
+  @apply flex-1;
+}
+
+.date {
+  @apply flex-none ml-4;
+}
+
+.userLogin {
+  @apply font-bold;
+}
+
+.userDisplayName {
+  @apply text-gray-500 text-sm;
+}
+
+.message {
+  @apply text-sm;
+}
+
+.body {
+  @apply mt-3;
+
+  blockquote {
+    @apply bg-gray-900 p-3 rounded;
+  }
+}

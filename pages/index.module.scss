@@ -1,0 +1,23 @@
+.wrapper {
+  @apply flex h-full;
+}
+
+.panel {
+  @apply bg-gray-800 flex flex-col items-end justify-center max-w-2xl p-12 text-right w-full;
+}
+
+.logo {
+  @apply fill-current mb-6 h-16;
+}
+
+.description {
+  @apply leading-tight mb-12 text-gray-500 text-lg;
+
+  p {
+    @apply mb-1;
+
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+}

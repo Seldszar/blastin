@@ -1,0 +1,59 @@
+.wrapper {
+  @apply block font-medium leading-tight px-8 py-3 rounded;
+
+  &:focus {
+    @apply outline-none;
+  }
+}
+
+.block {
+  @apply w-full;
+}
+
+.large {
+  @apply text-xl;
+}
+
+.default {
+  @apply bg-teal-500 text-white;
+
+  &:hover {
+    @apply bg-teal-400 shadow;
+  }
+
+  &:active {
+    @apply bg-teal-600 shadow-inner;
+  }
+}
+
+.purple {
+  @apply bg-purple-500 text-white;
+
+  &:hover {
+    @apply bg-purple-400;
+  }
+
+  &:active {
+    @apply bg-purple-600;
+  }
+}
+
+.delete {
+  @apply bg-red-500 text-white;
+
+  &:hover {
+    @apply bg-red-400;
+  }
+
+  &:active {
+    @apply bg-red-600;
+  }
+}
+
+.link {
+  @apply bg-transparent;
+
+  &:hover {
+    @apply underline;
+  }
+}

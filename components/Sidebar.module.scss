@@ -1,0 +1,18 @@
+.wrapper {
+  @apply flex flex-col w-16;
+
+  hr {
+    @apply border-gray-800 border-t mx-4;
+  }
+}
+
+.helper {
+  @apply z-10;
+
+  cursor: grabbing !important;
+  pointer-events: auto !important;
+}
+
+.expander {
+  @apply flex-1;
+}

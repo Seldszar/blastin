@@ -1,0 +1,31 @@
+.wrapper {
+  @apply bg-gray-900 p-1 rounded;
+
+  &:focus {
+    @apply outline-none;
+  }
+}
+
+.inputField {
+  @apply mb-2;
+}
+
+.row {
+  @apply flex;
+}
+
+.item {
+  @apply flex p-1 w-1/6;
+}
+
+.icon {
+  @apply cursor-pointer flex-1 flex items-center justify-center px-1 rounded text-2xl;
+
+  &:hover {
+    @apply shadow-outline;
+  }
+}
+
+.selected {
+  @apply bg-teal-500 text-white;
+}

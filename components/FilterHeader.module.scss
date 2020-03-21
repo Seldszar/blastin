@@ -1,0 +1,27 @@
+.wrapper {
+  @apply border-b border-gray-700 flex items-center justify-between mx-4 py-2;
+}
+
+.title {
+  @apply cursor-pointer flex font-bold items-center -mx-2 px-2 py-px rounded text-xl truncate;
+
+  .editIcon {
+    @apply ml-2 text-gray-500 text-sm;
+  }
+
+  &:hover {
+    @apply bg-gray-900;
+
+    .editIcon {
+      @apply text-white;
+    }
+  }
+}
+
+.actionButton {
+  @apply cursor-pointer flex flex-none h-10 items-center justify-center ml-2 rounded text-gray-500 text-2xl w-10;
+
+  &:hover {
+    @apply bg-gray-700 text-white;
+  }
+}

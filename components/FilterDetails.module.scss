@@ -1,0 +1,64 @@
+.wrapper {
+  @apply flex flex-col h-full relative;
+}
+
+.header {
+  @apply flex-none;
+}
+
+.body {
+  @apply flex flex-col flex-1 overflow-hidden pb-10;
+}
+
+.list {
+  @apply flex-1;
+}
+
+.listInner {
+  @apply p-4;
+}
+
+.eventCard {
+  @apply cursor-pointer;
+}
+
+.toggleButton {
+  @apply my-4;
+}
+
+.readEvents {
+  @apply absolute bottom-0 cursor-pointer flex flex-col inset-x-0 justify-end;
+
+  .inner {
+    @apply bg-gray-800 border-t border-gray-900 cursor-auto flex flex-col overflow-hidden relative z-10;
+
+    height: calc(100% - theme("spacing.64"));
+  }
+
+  .topBar {
+    @apply bg-gray-700 cursor-pointer flex flex-none font-medium h-10 items-center leading-none px-2 text-sm uppercase;
+
+    .icon {
+      @apply mr-2;
+    }
+  }
+
+  .content {
+    @apply p-4;
+  }
+
+  .backdrop {
+    @apply absolute inset-0;
+
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &.expanded {
+    @apply h-full;
+  }
+}

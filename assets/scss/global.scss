@@ -1,0 +1,21 @@
+/* purgecss start ignore */
+@tailwind base;
+/* purgecss end ignore */
+
+@import "./fabric-icons.scss";
+
+html {
+  @apply bg-gray-900 text-white;
+}
+
+::-webkit-scrollbar {
+  @apply h-1 w-1;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-teal-500;
+
+  &:hover {
+    @apply bg-white;
+  }
+}
