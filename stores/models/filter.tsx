@@ -1,9 +1,9 @@
-import { Parser } from "expr-eval"
-import { types, Instance, getParent } from "mobx-state-tree"
-import uniqueString from "unique-string"
+import { Parser } from "expr-eval";
+import { types, Instance, getRoot } from "mobx-state-tree";
+import uniqueString from "unique-string";
 
-import { EventInstance } from "./event"
-import { StoreInstance } from "./store"
+import { EventInstance } from "./event";
+import { StoreInstance } from "./store";
 
 const parser = new Parser({
   operators: {
@@ -11,7 +11,7 @@ const parser = new Parser({
     concatenate: false,
     conditional: false,
   },
-})
+});
 
 export const Filter = types
   .model({
@@ -20,44 +20,48 @@ export const Filter = types
     title: types.string,
     query: types.string,
   })
-  .views(self => ({
+  .views((self) => ({
     get filterCallback(): (data: any) => boolean {
       if (self.query) {
         try {
-          const expression = parser.parse(self.query)
+          const expression = parser.parse(self.query);
 
           return (data: any) => {
-            return !!expression.evaluate(data)
-          }
-        } catch {}
+            return Boolean(expression.evaluate(data));
+          };
+        } catch {
+          // ...
+        }
       }
 
-      return () => true
+      return () => true;
     },
   }))
-  .views(self => ({
+  .views((self) => ({
     get events(): EventInstance[] {
-      return getParent<StoreInstance>(self, 2)?.events.filter(self.filterCallback) ?? []
+      return getRoot<StoreInstance>(self)
+        .events.filter((event) => self.filterCallback(event))
+        .sort((a, b) => a.date.getTime() - b.date.getTime());
     },
   }))
-  .views(self => ({
+  .views((self) => ({
     get unreadEvents(): EventInstance[] {
-      return self.events.filter(event => event.readState === "unread")
+      return self.events.filter((event) => event.readState === "unread");
     },
     get readEvents(): EventInstance[] {
-      return self.events.filter(event => event.readState === "read")
+      return self.events.filter((event) => event.readState === "read");
     },
   }))
-  .actions(self => {
+  .actions((self) => {
     const markAsRead = () => {
-      self.unreadEvents.forEach(event => {
-        event.markAsRead()
-      })
-    }
+      self.unreadEvents.forEach((event) => {
+        event.markAsRead();
+      });
+    };
 
     return {
-      markAsRead
-    }
-  })
+      markAsRead,
+    };
+  });
 
-export type FilterInstance = Instance<typeof Filter>
+export type FilterInstance = Instance<typeof Filter>;

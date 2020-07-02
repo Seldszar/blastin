@@ -1,9 +1,9 @@
-import Head from "next/head"
-import Link from "next/link"
+import Head from "next/head";
+import Link from "next/link";
 
-import Button from "~/components/Button"
+import Button from "components/button";
 
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
 
 const IndexPage = () => (
   <div className={styles.wrapper}>
@@ -23,16 +23,17 @@ const IndexPage = () => (
       </svg>
 
       <div className={styles.description}>
-        <p>Yet another activity feed dashboard offering a high degree of customization with powerful filter expressions à la SQL</p>
+        <p>
+          Yet another activity feed dashboard offering a high degree of customization with powerful
+          filter expressions à la SQL
+        </p>
       </div>
 
       <Link href="/login">
-        <Button large>
-          Login with Twitch
-      </Button>
+        <Button large>Login with Twitch</Button>
       </Link>
     </div>
   </div>
-)
+);
 
-export default IndexPage
+export default IndexPage;

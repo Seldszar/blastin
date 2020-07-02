@@ -1,9 +1,8 @@
-import { types, Instance } from "mobx-state-tree"
+import { types, Instance } from "mobx-state-tree";
 
-export const Game = types
-  .model({
-    id: types.identifier,
-    name: types.string,
-  })
+export const Game = types.model({
+  id: types.identifier,
+  name: types.string,
+});
 
-export type GameInstance = Instance<typeof Game>
+export type GameInstance = Instance<typeof Game>;

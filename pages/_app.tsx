@@ -1,39 +1,36 @@
-import { prepareClientPortals } from '@jesstelford/react-portal-universal'
-import { onSnapshot } from 'mobx-state-tree'
-import App from 'next/app'
-import React from 'react'
+import "mobx-react-lite/batchingForReactDom";
 
-import { initializeStore, StoreInstance, StoreContext } from '~/stores'
+import { onSnapshot } from "mobx-state-tree";
+import NextApp from "next/app";
+import React from "react";
 
-import Container from '~/components/Container'
+import { initializeStore, StoreInstance, StoreContext } from "stores";
 
-import "~/assets/scss/global.scss"
+import Container from "components/container";
 
-if (typeof window !== 'undefined') {
-  prepareClientPortals()
-}
+import "assets/scss/global.scss";
 
-export default class extends App {
-  private store: StoreInstance
+export default class App extends NextApp {
+  private readonly store: StoreInstance;
 
-  constructor(props) {
-    super(props)
+  constructor(props: any) {
+    super(props);
 
-    const isServer = typeof window === 'undefined'
-    const initialState = isServer ? undefined : JSON.parse(localStorage.getItem("store"))
+    const isServer = typeof window === "undefined";
+    const initialState = isServer ? undefined : JSON.parse(localStorage.getItem("store") ?? "");
 
-    this.store = initializeStore(isServer, initialState)
+    this.store = initializeStore(isServer, initialState);
   }
 
   componentDidMount() {
-    onSnapshot(this.store, snapshot => {
-      localStorage.setItem("store", JSON.stringify(snapshot))
-    })
+    onSnapshot(this.store, (snapshot) => {
+      localStorage.setItem("store", JSON.stringify(snapshot));
+    });
   }
 
   render() {
-    const { Component, pageProps } = this.props
-    const { Layout = ({ children }) => children } = Component as any
+    const { Component, pageProps } = this.props;
+    const { Layout = ({ children }: any) => children } = Component as any;
 
     return (
       <StoreContext.Provider value={this.store}>
@@ -42,9 +39,7 @@ export default class extends App {
             <Component {...pageProps} />
           </Layout>
         </Container>
-
-        <div id="modal" />
       </StoreContext.Provider>
-    )
+    );
   }
 }

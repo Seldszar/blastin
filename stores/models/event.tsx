@@ -1,5 +1,5 @@
-import { types, Instance } from "mobx-state-tree"
-import uniqueString from "unique-string"
+import { types, Instance } from "mobx-state-tree";
+import uniqueString from "unique-string";
 
 export const Event = types
   .model({
@@ -10,23 +10,22 @@ export const Event = types
     readState: types.optional(types.string, "unread"),
     user: types.model({
       login: types.string,
-      displayName: types.maybe(types.string),
     }),
     data: types.frozen(),
   })
-  .actions(self => {
+  .actions((self) => {
     const markAsRead = () => {
-      self.readState = "read"
-    }
+      self.readState = "read";
+    };
 
     const updateData = (data: any) => {
-      self.data = { ...self.data, ...data }
-    }
+      self.data = { ...self.data, ...data };
+    };
 
     return {
       markAsRead,
       updateData,
-    }
-  })
+    };
+  });
 
-export type EventInstance = Instance<typeof Event>
+export type EventInstance = Instance<typeof Event>;

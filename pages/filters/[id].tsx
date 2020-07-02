@@ -1,11 +1,9 @@
-import DashboardLayout from "~/layouts/DashboardLayout"
+import FilterDetails from "components/filter-details";
 
-import FilterDetails from "~/components/FilterDetails"
+import DashboardLayout from "layouts/dashboard-layout";
 
-const FilterPage = () => (
-  <FilterDetails />
-)
+const FilterPage = () => <FilterDetails />;
 
-FilterPage.Layout = DashboardLayout
+FilterPage.Layout = DashboardLayout;
 
-export default FilterPage
+export default FilterPage;
