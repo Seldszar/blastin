@@ -11,10 +11,11 @@ export interface ButtonProps
   outline?: boolean;
   large?: boolean;
   theme?: string;
+  icon?: string;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ block, children, className, outline, large, theme = "default", ...rest }, ref) => (
+  ({ block, children, className, icon, outline, large, theme = "default", ...rest }, ref) => (
     <button
       ref={ref}
       className={clsx(
@@ -29,6 +30,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       )}
       {...rest}
     >
+      {icon && <span className={clsx("ms-Icon", `ms-Icon--${icon}`, styles.icon)} />}
       {children}
     </button>
   )

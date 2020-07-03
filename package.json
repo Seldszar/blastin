@@ -4,7 +4,7 @@
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
-    "test": "tsc --noEmit && eslint --ext=ts,tsx ."
+    "test": "tsc --noEmit && eslint --ext=js,ts,tsx ."
   },
   "dependencies": {
     "array-move": "^2.2.2",
@@ -62,6 +62,6 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": "eslint --fix"
+    "*.{js,ts,tsx}": "eslint --fix"
   }
 }

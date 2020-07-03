@@ -7,19 +7,18 @@ import { FilterInstance } from "stores";
 
 import Button from "./button";
 import IconPicker from "./icon-picker";
-import Modal from "./modal";
+import Modal, { ModalProps } from "./modal";
 
 import styles from "./filter-modal.module.scss";
 
-interface Props {
+interface FilterModalProps extends Omit<ModalProps, "children"> {
   className?: string;
   filter: FilterInstance | null;
-  isOpen?: boolean;
   onClose?: (value?: Partial<FilterInstance>) => void;
   onDelete?: () => void;
 }
 
-const FilterModal: FunctionComponent<Props> = ({ filter, onDelete, ...rest }) => {
+const FilterModal: FunctionComponent<FilterModalProps> = ({ filter, onDelete, ...rest }) => {
   const { handleSubmit, register, reset, control } = useForm({
     defaultValues: filter ?? {},
   });
@@ -88,8 +87,6 @@ const FilterModal: FunctionComponent<Props> = ({ filter, onDelete, ...rest }) =>
 
 FilterModal.propTypes = {
   filter: PropTypes.any,
-  isOpen: PropTypes.bool,
-  onClose: PropTypes.func,
   onDelete: PropTypes.func,
 };
 

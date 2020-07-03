@@ -5,9 +5,11 @@ import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { FunctionComponent } from "react";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
+import { useToggle } from "react-use";
 
 import { FilterInstance, useStore } from "stores";
 
+import SettingsModal from "./settings-modal";
 import SidebarLink from "./sidebar-link";
 
 import styles from "./sidebar.module.scss";
@@ -56,6 +58,8 @@ interface SortableProps {
 }
 
 const Sidebar: FunctionComponent<SortableProps> = ({ className, filters, onCreateFilter }) => {
+  const [modalOpen, toggleModal] = useToggle(false);
+
   const router = useRouter();
   const store = useStore();
 
@@ -84,7 +88,10 @@ const Sidebar: FunctionComponent<SortableProps> = ({ className, filters, onCreat
 
       <div className={styles.expander} />
 
+      <SidebarLink icon="Settings" onClick={() => toggleModal(true)} />
       <SidebarLink icon="PowerButton" onClick={onLogout} />
+
+      <SettingsModal isOpen={modalOpen} onClose={() => toggleModal(false)} />
     </div>
   );
 };

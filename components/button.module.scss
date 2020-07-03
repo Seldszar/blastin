@@ -1,9 +1,13 @@
 .wrapper {
-  @apply block font-medium leading-tight px-8 py-3 rounded;
+  @apply flex font-medium items-center justify-center leading-tight px-8 py-3 rounded;
 
   &:focus {
     @apply outline-none;
   }
+}
+
+.icon {
+  @apply mr-3;
 }
 
 .block {

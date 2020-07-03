@@ -1,6 +1,6 @@
 import arrayMove from "array-move";
 import ky from "ky-universal";
-import { types, flow, Instance } from "mobx-state-tree";
+import { applySnapshot, getSnapshot, types, flow, Instance } from "mobx-state-tree";
 
 import { Event, EventInstance } from "./event";
 import { Filter, FilterInstance } from "./filter";
@@ -26,6 +26,12 @@ export const Store = types
     token: types.maybe(types.string),
   })
   .views((self) => ({
+    exportFilters() {
+      return {
+        version: self.version,
+        filters: getSnapshot(self.filters),
+      };
+    },
     findFilter(id: string) {
       return self.filters.find((filter) => filter.id === id);
     },
@@ -33,6 +39,14 @@ export const Store = types
   .actions((self) => {
     const setToken = (token?: string) => {
       self.token = token;
+    };
+
+    const importFilters = (data: any) => {
+      if (data.version !== self.version) {
+        throw new TypeError("Unsupported version");
+      }
+
+      applySnapshot(self.filters, data.filters);
     };
 
     const createFilter = (value: Partial<FilterInstance>) => {
@@ -160,6 +174,7 @@ export const Store = types
 
     return {
       setToken,
+      importFilters,
       createFilter,
       updateFilter,
       deleteFilter,

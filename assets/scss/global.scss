@@ -8,6 +8,14 @@ html {
   @apply bg-gray-900 text-white;
 }
 
+fieldset {
+  @apply border border-gray-700 p-4 pt-2 rounded;
+
+  legend {
+    @apply font-medium px-2 text-gray-500 text-sm uppercase;
+  }
+}
+
 ::-webkit-scrollbar {
   @apply h-1 w-1;
 }
