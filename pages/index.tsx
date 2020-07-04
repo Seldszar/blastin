@@ -1,11 +1,13 @@
 import Head from "next/head";
 import Link from "next/link";
 
+import { LayoutPage } from "lib/types";
+
 import Button from "components/button";
 
 import styles from "./index.module.scss";
 
-const IndexPage = () => (
+const IndexPage: LayoutPage = () => (
   <div className={styles.wrapper}>
     <Head>
       <title>Blastin for Twitch</title>

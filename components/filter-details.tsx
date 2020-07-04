@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, MouseEvent } from "react";
 import { useToggle } from "react-use";
 
 import { useStore, FilterInstance } from "stores";
@@ -11,6 +11,7 @@ import FilterModal from "components/filter-modal";
 import Layout from "components/layout";
 
 import EventList from "./event-list";
+import Icon from "./icon";
 import Scroller from "./scroller";
 
 import styles from "./filter-details.module.scss";
@@ -30,13 +31,8 @@ const FilterDetails = () => {
     return null;
   }
 
-  const unreadEvents = filter.events
-    .filter((event) => event.readState === "unread")
-    .sort((a, b) => a.date.getTime() - b.date.getTime());
-
-  const readEvents = filter.events
-    .filter((event) => event.readState === "read")
-    .sort((a, b) => b.date.getTime() - a.date.getTime());
+  const unreadEvents = filter.unreadEvents.sort((a, b) => a.date.getTime() - b.date.getTime());
+  const readEvents = filter.readEvents.sort((a, b) => b.date.getTime() - a.date.getTime());
 
   const openFilterModal = (filter: FilterInstance | null) => {
     setActiveFilter(filter);

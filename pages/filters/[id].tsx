@@ -1,8 +1,9 @@
-import FilterDetails from "components/filter-details";
+import { LayoutPage } from "lib/types";
 
+import FilterDetails from "components/filter-details";
 import DashboardLayout from "layouts/dashboard-layout";
 
-const FilterPage = () => <FilterDetails />;
+const FilterPage: LayoutPage = () => <FilterDetails />;
 
 FilterPage.Layout = DashboardLayout;
 

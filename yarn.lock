@@ -7063,6 +7063,11 @@ react-universal-interface@^0.6.2:
   resolved "https://registry.yarnpkg.com/react-universal-interface/-/react-universal-interface-0.6.2.tgz#5e8d438a01729a4dbbcbeeceb0b86be146fe2b3b"
   integrity sha512-dg8yXdcQmvgR13RIlZbTRQOoUrDciFVoSBZILwjE2LFISxZZ8loVJKAkuzswl5js8BHda79bIb2b84ehU8IjXw==
 
+react-use-websocket@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/react-use-websocket/-/react-use-websocket-2.0.3.tgz#2da93354d1f8fc03f932241da34cedc30bc13ea3"
+  integrity sha512-Ift3NVK56jeeZbrQfCwVnBXJqRsx9G4idmUOdh7OmULHrb3yRWPjep5RXTVewSGSd4HpyU6TQdbLuaOgaQtI8w==
+
 react-use@^15.3.2:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-use/-/react-use-15.3.2.tgz#73b2a0e071f47e7e907eb0024e4e7681ac2aab33"
@@ -7809,11 +7814,6 @@ snapdragon@^0.8.1:
     source-map "^0.5.6"
     source-map-resolve "^0.5.0"
     use "^3.1.0"
-
-sockette@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/sockette/-/sockette-2.0.6.tgz#63b533f3cfe3b592fc84178beea6577fa18cebf3"
-  integrity sha512-W6iG8RGV6Zife3Cj+FhuyHV447E6fqFM2hKmnaQrTvg3OydINV3Msj3WPFbX76blUlUxvQSMMMdrJxce8NqI5Q==
 
 sort-keys@^1.0.0:
   version "1.1.2"

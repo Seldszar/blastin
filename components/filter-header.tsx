@@ -4,6 +4,8 @@ import { FunctionComponent } from "react";
 
 import { FilterInstance } from "stores";
 
+import Icon from "./icon";
+
 import styles from "./filter-header.module.scss";
 
 interface Props {
@@ -22,11 +24,11 @@ const FilterHeader: FunctionComponent<Props> = ({
   <div className={clsx(styles.wrapper, className)}>
     <div className={styles.title} onClick={onUpdateClick}>
       {filter.title}
-      <div className={clsx("ms-Icon ms-Icon--EditSolid12", styles.editIcon)} />
+      <Icon className={styles.editIcon} name="EditSolid12" />
     </div>
 
     <div className={styles.actionButton} onClick={onClearClick}>
-      <div className="ms-Icon ms-Icon--CheckMark" />
+      <Icon name="CheckMark" />
     </div>
   </div>
 );

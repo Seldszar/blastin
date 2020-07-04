@@ -2,6 +2,8 @@ import clsx from "clsx";
 import PropTypes from "prop-types";
 import { useState, ReactNode, FunctionComponent } from "react";
 
+import Icon from "./icon";
+
 import styles from "./modal.module.scss";
 
 export interface ModalProps {
@@ -31,7 +33,7 @@ const Modal: FunctionComponent<ModalProps> = ({ children, isOpen, onClose, title
           onMouseUp={(event) => event.stopPropagation()}
         >
           <button type="button" className={styles.closeButton} onClick={() => close()}>
-            <span className="ms-Icon ms-Icon--Cancel" />
+            <Icon name="Cancel" />
           </button>
 
           {title && <h1 className={styles.title}>{title}</h1>}

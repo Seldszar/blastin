@@ -5,6 +5,8 @@ import { AutoSizer, List } from "react-virtualized";
 
 import AllIconNames from "data/AllIconNames.json";
 
+import Icon from "./icon";
+
 import styles from "./icon-picker.module.scss";
 
 interface Props {
@@ -63,7 +65,7 @@ const IconPicker: FunctionComponent<Props> = ({ className, value, onChange }) =>
                       })}
                       onClick={() => onChange?.(icon.name)}
                     >
-                      <span className={clsx("ms-Icon", `ms-Icon--${icon.name}`)} />
+                      <Icon name={icon.name} />
                     </div>
                   </div>
                 ))}

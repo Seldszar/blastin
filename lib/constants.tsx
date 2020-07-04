@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { ReadyState } from "react-use-websocket";
 
 import { numberFormat, getSubscriptionPlanName } from "lib/helpers";
 import { EventInstance } from "stores";
@@ -6,6 +7,14 @@ import { EventInstance } from "stores";
 import SubscriptionMysteryGift from "components/events/subscription-mystery-gift";
 
 export const HOSTING_PATTERN = /^(\w+) is now(?: (auto))? hosting\D+(\d+)?/i;
+
+export const connectionStatus = {
+  [ReadyState.UNINSTANTIATED]: "uninstantiated",
+  [ReadyState.CONNECTING]: "connecting",
+  [ReadyState.OPEN]: "open",
+  [ReadyState.CLOSING]: "closing",
+  [ReadyState.CLOSED]: "closed",
+};
 
 export enum EventType {
   AnonymousSubscriptionGift = "anonsubgift",

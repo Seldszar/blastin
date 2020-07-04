@@ -2,11 +2,12 @@ import { useRouter } from "next/router";
 import { parse } from "querystring";
 import { useEffect } from "react";
 
+import { LayoutPage } from "lib/types";
 import { useStore } from "stores";
 
 import SplashLayout from "layouts/splash-layout";
 
-const LoginCallbackPage = () => {
+const LoginCallbackPage: LayoutPage = () => {
   const router = useRouter();
   const store = useStore();
 

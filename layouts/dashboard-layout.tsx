@@ -1,33 +1,52 @@
 import clsx from "clsx";
-import { withRouter, Router } from "next/router";
-import { Component } from "react";
-import Sockette from "sockette";
+import { useRouter } from "next/router";
+import PropTypes from "prop-types";
+import { FunctionComponent, useEffect } from "react";
+import useWebSocket from "react-use-websocket";
 import { parse as parseMessage, Message } from "tekko";
 
-import { HOSTING_PATTERN } from "lib/constants";
-import { withStore, EventInstance, StoreInstance } from "stores";
+import { HOSTING_PATTERN, connectionStatus } from "lib/constants";
+import { EventInstance, useStore } from "stores";
 
 import StreamStatus from "components/stream-status";
 
 import styles from "./dashboard-layout.module.scss";
 
-class DashboardLayout extends Component<{
-  router: Router;
-  store: StoreInstance;
-}> {
-  readonly state = {
-    socketState: "opening",
-  };
+const DashboardLayout: FunctionComponent = ({ children }) => {
+  const router = useRouter();
+  const store = useStore();
 
-  private readonly pendingMysteryGifts = new Map();
-  private readonly commandHandlers = new Map<
-    string,
-    (message: Message) => Partial<EventInstance> | void
-  >([
+  const { sendMessage, readyState } = useWebSocket("wss://irc-ws.chat.twitch.tv", {
+    retryOnError: true,
+    onOpen() {
+      if (!store.token || !store.user) {
+        return;
+      }
+
+      sendMessage("CAP REQ :twitch.tv/tags twitch.tv/commands");
+      sendMessage(`PASS oauth:${store.token}`);
+      sendMessage(`NICK ${store.user.login}`);
+      sendMessage(`JOIN #${store.user.login}`);
+    },
+    onMessage(event) {
+      const chunks = event.data.split("\r\n");
+
+      for (const chunk of chunks) {
+        if (chunk.length === 0) {
+          continue;
+        }
+
+        handleMessage(parseMessage(chunk));
+      }
+    },
+  });
+
+  const pendingMysteryGifts = new Map();
+  const commandHandlers = new Map<string, (message: Message) => Partial<EventInstance> | void>([
     [
       "PING",
       ({ trailing }) => {
-        this.socket?.send(`PONG :${trailing}`);
+        sendMessage(`PONG :${trailing}`);
       },
     ],
     [
@@ -112,17 +131,17 @@ class DashboardLayout extends Component<{
           case "subgift": {
             const userId = tags["user-id"];
 
-            const pendingMysteryGift = this.pendingMysteryGifts.get(userId);
+            const pendingMysteryGift = pendingMysteryGifts.get(userId);
 
             if (pendingMysteryGift) {
-              this.store.updateEventData(pendingMysteryGift.eventId, (data) => ({
+              store.updateEventData(pendingMysteryGift.eventId, (data) => ({
                 recipients: data.recipients.concat({
                   login: tags["msg-param-recipient-user-name"],
                 }),
               }));
 
               if (++pendingMysteryGift.current >= pendingMysteryGift.total) {
-                this.pendingMysteryGifts.delete(userId);
+                pendingMysteryGifts.delete(userId);
               }
 
               return undefined;
@@ -148,7 +167,7 @@ class DashboardLayout extends Component<{
           case "submysterygift": {
             const subscriptionCount = Number(tags["msg-param-mass-gift-count"]);
 
-            this.pendingMysteryGifts.set(tags["user-id"], {
+            pendingMysteryGifts.set(tags["user-id"], {
               eventId: tags.id as string,
               total: subscriptionCount,
               current: 0,
@@ -245,121 +264,68 @@ class DashboardLayout extends Component<{
     ],
   ]);
 
-  private socket: Sockette | undefined;
-  private intervalId: NodeJS.Timeout | undefined;
-
-  private get store() {
-    return this.props.store;
-  }
-
-  componentDidMount = async () => {
-    try {
-      const searchParameters = new URLSearchParams(location.search);
-      const asLogin = searchParameters.get("as");
-
-      await this.store.fetchUser(asLogin);
-    } catch {
-      await this.props.router.push("/login");
-      return;
-    }
-
-    await this.updateStream();
-
-    this.intervalId = setInterval(this.updateStream, 60000);
-    this.socket = new Sockette("wss://irc-ws.chat.twitch.tv", {
-      onclose: () => {
-        this.setState({
-          socketState: "closed",
-        });
-      },
-      onopen: () => {
-        if (!this.store.token || !this.store.user) {
-          return;
-        }
-
-        this.socket?.send("CAP REQ :twitch.tv/tags twitch.tv/commands");
-        this.socket?.send(`PASS oauth:${this.store.token}`);
-        this.socket?.send(`NICK ${this.store.user.login}`);
-        this.socket?.send(`JOIN #${this.store.user.login}`);
-
-        this.setState({
-          socketState: "open",
-        });
-      },
-      onmessage: (event) => {
-        const chunks = event.data.split("\r\n");
-
-        for (const chunk of chunks) {
-          if (chunk.length === 0) {
-            continue;
-          }
-
-          this.handleMessage(parseMessage(chunk));
-        }
-      },
-    });
-  };
-
-  componentWillUnmount = () => {
-    this.socket?.close();
-
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
-  };
-
-  render() {
-    return (
-      <div className={styles.wrapper}>
-        <StreamStatus className={styles.streamStatus} />
-        <main className={styles.main}>{this.props.children}</main>
-        <footer className={styles.footer}>
-          <div className={styles.socketState}>
-            <div className={clsx(styles.stateIndicator, styles[this.state.socketState])} />
-            Chat Connection
-            {this.state.socketState === "closed" && (
-              <div className={styles.reconnectButton} onClick={this.reconnect}>
-                <span className="mdi ms-Icon--Plug" />
-              </div>
-            )}
-          </div>
-          <div className={styles.expander} />
-          <div className={styles.credits}>
-            Blastin by <a href="https://seldszar.fr">Seldszar</a>
-          </div>
-          <div className={styles.github}>
-            <a href="https://github.com/seldszar/blastin" target="_blank" rel="noopener noreferrer">
-              Github
-            </a>
-          </div>
-        </footer>
-      </div>
-    );
-  }
-
-  private readonly handleMessage = (message: Message) => {
-    const commandHandler = this.commandHandlers.get(message.command);
+  const handleMessage = (message: Message) => {
+    const commandHandler = commandHandlers.get(message.command);
 
     if (commandHandler) {
       const event = commandHandler(message);
 
       if (event) {
-        this.store.addEvent(event);
+        store.addEvent(event);
       }
     }
   };
 
-  private readonly updateStream = async () => {
+  const updateStream = async () => {
     try {
-      await this.store.fetchStream();
+      await store.fetchStream();
     } catch (error) {
       console.error(error);
     }
   };
 
-  private readonly reconnect = () => {
-    this.socket?.reconnect();
-  };
-}
+  useEffect(() => {
+    const update = async () => {
+      try {
+        const searchParameters = new URLSearchParams(location.search);
+        const asLogin = searchParameters.get("as");
 
-export default withRouter(withStore(DashboardLayout));
+        await store.fetchUser(asLogin);
+      } catch {
+        return router.push("/login");
+      }
+
+      await updateStream();
+    };
+
+    update();
+  }, []);
+
+  return (
+    <div className={styles.wrapper}>
+      <StreamStatus className={styles.streamStatus} />
+      <main className={styles.main}>{children}</main>
+      <footer className={styles.footer}>
+        <div className={styles.socketState}>
+          <div className={clsx(styles.stateIndicator, styles[connectionStatus[readyState]])} />
+          Chat Connection
+        </div>
+        <div className={styles.expander} />
+        <div className={styles.credits}>
+          Blastin by <a href="https://seldszar.fr">Seldszar</a>
+        </div>
+        <div className={styles.github}>
+          <a href="https://github.com/seldszar/blastin" target="_blank" rel="noopener noreferrer">
+            Github
+          </a>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+DashboardLayout.propTypes = {
+  children: PropTypes.node,
+};
+
+export default DashboardLayout;

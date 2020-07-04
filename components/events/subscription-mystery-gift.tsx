@@ -5,6 +5,8 @@ import { useToggle } from "react-use";
 
 import { EventInstance } from "stores";
 
+import Icon from "../icon";
+
 import styles from "./subscription-mystery-gift.module.scss";
 
 export interface SubscriptionMysteryGiftProps {
@@ -20,12 +22,7 @@ const SubscriptionMysteryGift: FunctionComponent<SubscriptionMysteryGiftProps> =
       onClick={(event) => event.stopPropagation()}
     >
       <div className={styles.toggleButton} onClick={toggle}>
-        <span
-          className={clsx(
-            styles.icon,
-            `ms-Icon ms-Icon--${expanded ? "CaretSolidDown" : "CaretSolidRight"}`
-          )}
-        />
+        <Icon className={styles.icon} name={expanded ? "CaretSolidDown" : "CaretSolidRight"} />
         Recipients
       </div>
 

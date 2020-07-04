@@ -2,6 +2,8 @@ import clsx from "clsx";
 import PropTypes from "prop-types";
 import { DetailedHTMLProps, ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
 
+import Icon from "./icon";
+
 import styles from "./button.module.scss";
 
 export interface ButtonProps
@@ -30,7 +32,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       )}
       {...rest}
     >
-      {icon && <span className={clsx("ms-Icon", `ms-Icon--${icon}`, styles.icon)} />}
+      {icon && <Icon className={styles.icon} name={icon} />}
       {children}
     </button>
   )

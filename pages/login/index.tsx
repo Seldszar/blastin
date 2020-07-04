@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 
+import { LayoutPage } from "lib/types";
+
 import SplashLayout from "layouts/splash-layout";
 
-const LoginIndexPage = () => {
+const LoginIndexPage: LayoutPage = () => {
   useEffect(() => {
     const loginUrl = new URL("https://id.twitch.tv/oauth2/authorize");
     const redirectUrl = new URL("/login/callback", location.href);

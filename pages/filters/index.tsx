@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
+import { LayoutPage } from "lib/types";
 import { useStore } from "stores";
 
-const FilterIndexPage = () => {
+const FilterIndexPage: LayoutPage = () => {
   const router = useRouter();
   const store = useStore();
 

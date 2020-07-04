@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { FunctionComponent, forwardRef } from "react";
 
+import Icon from "./icon";
+
 import styles from "./sidebar-link.module.scss";
 
 interface SidebarLinkInnerProps {
@@ -24,7 +26,7 @@ const SidebarLinkInner = forwardRef<HTMLDivElement, SidebarLinkInnerProps>((prop
   >
     <div className={clsx(styles.inner, { [styles.active]: props.active })}>
       <div className={styles.icon}>
-        <span className={`ms-Icon ms-Icon--${props.icon}`} />
+        <Icon name={props.icon} />
       </div>
 
       {(props.unread ?? 0) > 0 && <div className={styles.unreadBadge}>{props.unread}</div>}

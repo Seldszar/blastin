@@ -24,9 +24,9 @@
     "react-infinite-scroller": "^1.2.4",
     "react-sortable-hoc": "^1.11.0",
     "react-use": "^15.3.2",
+    "react-use-websocket": "^2.0.3",
     "react-virtualized": "^9.21.2",
     "setimmediate": "^1.0.5",
-    "sockette": "^2.0.6",
     "tekko": "^2.4.0",
     "unique-string": "^2.0.0"
   },

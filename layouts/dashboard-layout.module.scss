@@ -32,18 +32,18 @@
 }
 
 .stateIndicator {
-  @apply border-2 border-transparent h-3 mr-2 rounded-full w-3;
+  @apply border-2 border-gray-500 h-3 mr-2 rounded-full w-3;
 
   &.closed {
     @apply border-red-500;
   }
 
-  &.opening {
+  &.connecting {
     @apply border-yellow-500;
   }
 
   &.open {
-    @apply bg-green-500;
+    @apply bg-green-500 border-transparent;
   }
 }
 

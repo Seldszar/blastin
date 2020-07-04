@@ -5,6 +5,8 @@ import { FunctionComponent, MouseEventHandler, ReactNode } from "react";
 import { timeFormat } from "lib/helpers";
 import { EventInstance } from "stores";
 
+import Icon from "./icon";
+
 import styles from "./event-card.module.scss";
 
 export interface EventCardProps {
@@ -29,7 +31,7 @@ const EventCard: FunctionComponent<EventCardProps> = ({
     onClick={onClick}
   >
     <div className={styles.icon}>
-      <span className={clsx("ms-Icon", `ms-Icon--${icon}`)} />
+      <Icon name={icon} />
     </div>
 
     <div className={styles.inner}>
