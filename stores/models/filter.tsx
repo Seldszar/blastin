@@ -1,17 +1,10 @@
-import { Parser } from "expr-eval";
 import { types, Instance, getRoot } from "mobx-state-tree";
 import uniqueString from "unique-string";
 
+import { queryParser } from "lib/helpers";
+
 import { EventInstance } from "./event";
 import { StoreInstance } from "./store";
-
-const parser = new Parser({
-  operators: {
-    assignment: false,
-    concatenate: false,
-    conditional: false,
-  },
-});
 
 export const Filter = types
   .model({
@@ -24,10 +17,14 @@ export const Filter = types
     get filterCallback(): (data: any) => boolean {
       if (self.query) {
         try {
-          const expression = parser.parse(self.query);
+          const expression = queryParser.parse(self.query);
 
           return (data: any) => {
-            return Boolean(expression.evaluate(data));
+            try {
+              return Boolean(expression.evaluate(data));
+            } catch {
+              return false;
+            }
           };
         } catch {
           // ...

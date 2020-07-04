@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useForm, Controller } from "react-hook-form";
 import { useEffect, FunctionComponent, MouseEventHandler } from "react";
 
+import { queryParser } from "lib/helpers";
 import { FilterInstance } from "stores";
 
 import Button from "./button";
@@ -19,8 +20,10 @@ interface FilterModalProps extends Omit<ModalProps, "children"> {
 }
 
 const FilterModal: FunctionComponent<FilterModalProps> = ({ filter, onDelete, ...rest }) => {
-  const { handleSubmit, register, reset, control } = useForm({
+  const { errors, handleSubmit, register, reset, control } = useForm({
+    criteriaMode: "all",
     defaultValues: filter ?? {},
+    mode: "onChange",
   });
 
   const handleDeleteClick: MouseEventHandler = (event) => {
@@ -48,8 +51,22 @@ const FilterModal: FunctionComponent<FilterModalProps> = ({ filter, onDelete, ..
             <label>
               Query
               <textarea
-                ref={register}
-                className={clsx(styles.control, styles.queryInput)}
+                ref={register({
+                  validate(value: string) {
+                    if (value.length > 0) {
+                      try {
+                        queryParser.parse(value);
+                      } catch (error) {
+                        return error.message;
+                      }
+                    }
+
+                    return true;
+                  },
+                })}
+                className={clsx(styles.control, styles.queryInput, {
+                  [styles.error]: errors.query,
+                })}
                 name="query"
               />
             </label>

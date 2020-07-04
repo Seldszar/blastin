@@ -1,7 +1,17 @@
+import { Parser } from "expr-eval";
+
 export const numberFormat = new Intl.NumberFormat("en-US");
 export const timeFormat = new Intl.DateTimeFormat("en-US", {
   hour: "numeric",
   minute: "numeric",
+});
+
+export const queryParser = new Parser({
+  operators: {
+    assignment: false,
+    concatenate: false,
+    conditional: false,
+  },
 });
 
 export function getSubscriptionPlanName(subscriptionPlan: string): string {
