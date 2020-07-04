@@ -69,6 +69,10 @@ export const Store = types
       self.events.push(event as EventInstance);
     };
 
+    const removeEvent = (event: EventInstance) => {
+      self.events.remove(event);
+    };
+
     const updateEventData = (id: string, updater: (data: any) => any) => {
       const event = self.events.find((event) => event.id === id);
 
@@ -180,6 +184,7 @@ export const Store = types
       deleteFilter,
       moveFilter,
       addEvent,
+      removeEvent,
       updateEventData,
       fetchUser,
       fetchGame,

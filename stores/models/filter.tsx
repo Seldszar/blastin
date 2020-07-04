@@ -53,6 +53,14 @@ export const Filter = types
     },
   }))
   .actions((self) => {
+    const clearReadEvents = () => {
+      const store = getRoot<StoreInstance>(self);
+
+      self.readEvents.forEach((event) => {
+        store.removeEvent(event);
+      });
+    };
+
     const markAsRead = () => {
       self.unreadEvents.forEach((event) => {
         event.markAsRead();
@@ -60,6 +68,7 @@ export const Filter = types
     };
 
     return {
+      clearReadEvents,
       markAsRead,
     };
   });

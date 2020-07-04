@@ -60,6 +60,13 @@ const FilterDetails = () => {
     toggleModal(false);
   };
 
+  const handleClearReadEvents = (event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    filter.clearReadEvents();
+  };
+
   return (
     <Layout filters={store.filters} onCreateFilter={() => openFilterModal(null)}>
       {filter && (
@@ -85,13 +92,15 @@ const FilterDetails = () => {
             <div className={styles.backdrop} onClick={() => toggleAcknowledgedEvents(false)} />
             <div className={styles.inner}>
               <div className={styles.topBar} onClick={toggleAcknowledgedEvents}>
-                <span
-                  className={clsx(
-                    styles.icon,
-                    `ms-Icon ms-Icon--${expanded ? "CaretSolidDown" : "CaretSolidRight"}`
-                  )}
-                />
-                Acknowledged Events
+                <Icon className={styles.icon} name={expanded ? "ChevronDown" : "ChevronRight"} />
+                <div className={styles.title}>
+                  Acknowledged Events{readEvents.length > 0 && ` (${readEvents.length})`}
+                </div>
+                {readEvents.length > 0 && (
+                  <div className={styles.clearAction} onClick={handleClearReadEvents}>
+                    <Icon name="Delete" />
+                  </div>
+                )}
               </div>
 
               {expanded && (
