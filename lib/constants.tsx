@@ -85,7 +85,7 @@ export const eventRegistry = new Map<EventType, EventDescriptor>([
       description(event) {
         return (
           <>
-            Upgraded his subscription gifted by <strong>{event.data.sender.name}</strong>
+            Upgraded his subscription gifted by <strong>{event.data.sender.login}</strong>
           </>
         );
       },
