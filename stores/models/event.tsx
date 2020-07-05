@@ -1,3 +1,4 @@
+import flat from "flat";
 import { types, Instance } from "mobx-state-tree";
 import uniqueString from "unique-string";
 
@@ -13,6 +14,11 @@ export const Event = types
     }),
     data: types.frozen(),
   })
+  .views((self) => ({
+    get eventValues(): string[][] {
+      return Object.entries(flat({ type: self.type, data: self.data }));
+    },
+  }))
   .actions((self) => {
     const markAsRead = () => {
       self.readState = "read";

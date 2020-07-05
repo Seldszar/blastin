@@ -27,7 +27,7 @@
 }
 
 .inner {
-  @apply flex-1;
+  @apply flex-1 overflow-hidden;
 }
 
 .level {
@@ -57,5 +57,22 @@
     @apply bg-black p-3 rounded;
 
     --bg-opacity: 0.25;
+  }
+}
+
+.eventValues {
+  @apply bg-black font-mono mt-2 p-2 rounded text-xs;
+
+  dl {
+    @apply flex -mx-1;
+  }
+
+  dt,
+  dd {
+    @apply flex-1 mx-1;
+  }
+
+  dd {
+    @apply truncate;
   }
 }

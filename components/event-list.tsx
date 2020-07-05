@@ -13,11 +13,13 @@ export interface EventListProps {
   events: EventInstance[];
   onItemClick?: (event: EventInstance) => void;
   small?: boolean;
+  withEventValues?: boolean;
 }
 
 const EventList: FunctionComponent<EventListProps> = ({
   events,
   small,
+  withEventValues,
   onItemClick,
   chunkCount = 25,
 }) => {
@@ -47,6 +49,7 @@ const EventList: FunctionComponent<EventListProps> = ({
             description={eventHandler.description(event)}
             onClick={onItemClick && (() => onItemClick(event))}
             small={small}
+            withEventValues={withEventValues}
           >
             {eventHandler.content?.(event) ?? null}
           </EventCard>
@@ -61,6 +64,7 @@ EventList.propTypes = {
   events: PropTypes.array.isRequired,
   onItemClick: PropTypes.func,
   small: PropTypes.bool,
+  withEventValues: PropTypes.bool,
 };
 
 export default observer(EventList);

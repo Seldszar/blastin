@@ -101,7 +101,7 @@ const FilterModal: FunctionComponent<FilterModalProps> = ({ filter, onDelete, ..
                 <div className={styles.label}>Result Preview</div>
                 <div className={styles.control}>
                   <div className={styles.filteredEvents}>
-                    <EventList small events={filteredEvents} />
+                    <EventList small withEventValues events={filteredEvents} />
                   </div>
                 </div>
               </div>
