@@ -54,6 +54,8 @@
   @apply mt-3;
 
   blockquote {
-    @apply bg-gray-900 p-3 rounded;
+    @apply bg-black p-3 rounded;
+
+    --bg-opacity: 0.25;
   }
 }

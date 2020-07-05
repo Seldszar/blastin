@@ -98,7 +98,7 @@ const FilterModal: FunctionComponent<FilterModalProps> = ({ filter, onDelete, ..
             </div>
             <div className={clsx(styles.column, styles.filteredEventsColumn)}>
               <div className={styles.field}>
-                <div className={styles.label}>Query Preview</div>
+                <div className={styles.label}>Result Preview</div>
                 <div className={styles.control}>
                   <div className={styles.filteredEvents}>
                     <EventList small events={filteredEvents} />

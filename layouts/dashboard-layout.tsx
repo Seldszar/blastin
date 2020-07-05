@@ -82,7 +82,6 @@ const DashboardLayout: FunctionComponent = ({ children }) => {
               data: {
                 sender: {
                   login: tags["msg-param-sender-login"],
-                  displayName: tags["msg-param-sender-name"],
                 },
               },
             };
@@ -158,7 +157,6 @@ const DashboardLayout: FunctionComponent = ({ children }) => {
                 subscriptionPlan: tags["msg-param-sub-plan"],
                 recipient: {
                   login: tags["msg-param-recipient-user-name"],
-                  displayName: tags["msg-param-recipient-display-name"],
                 },
               },
             };
@@ -195,7 +193,6 @@ const DashboardLayout: FunctionComponent = ({ children }) => {
               type: tags["msg-id"] as string,
               user: {
                 login: tags.login as string,
-                displayName: tags["display-name"] as string,
               },
               data: {
                 comment: trailing,
@@ -252,7 +249,6 @@ const DashboardLayout: FunctionComponent = ({ children }) => {
             type: "cheer",
             user: {
               login: prefix.name,
-              displayName: tags["display-name"] as string,
             },
             data: {
               bits: Number(tags.bits),

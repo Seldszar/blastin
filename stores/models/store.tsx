@@ -8,13 +8,6 @@ import { Game } from "./game";
 import { Stream } from "./stream";
 import { User } from "./user";
 
-const api = ky.extend({
-  prefixUrl: "https://api.twitch.tv/helix",
-  headers: {
-    "Client-ID": process.env.CLIENT_ID as string,
-  },
-});
-
 export const Store = types
   .model({
     version: types.optional(types.number, 1),
@@ -37,6 +30,24 @@ export const Store = types
     },
   }))
   .actions((self) => {
+    const api = ky.extend({
+      prefixUrl: "https://api.twitch.tv/helix",
+      headers: {
+        "Client-ID": process.env.CLIENT_ID as string,
+      },
+      hooks: {
+        beforeRequest: [
+          (request) => {
+            if (self.token) {
+              request.headers.set("Authorization", `Bearer ${self.token as string}`);
+            }
+
+            return request;
+          },
+        ],
+      },
+    });
+
     const setToken = (token?: string) => {
       self.token = token;
     };
@@ -90,9 +101,6 @@ export const Store = types
 
       const response = yield api.get("users", {
         searchParams: searchParameters,
-        headers: {
-          Authorization: `Bearer ${self.token as string}`,
-        },
       });
 
       const {
@@ -106,7 +114,6 @@ export const Store = types
       self.user = {
         id: userData.id,
         login: userData.login,
-        displayName: userData.display_name,
         profileImageUrl: userData.profile_image_url,
       };
     });
@@ -119,9 +126,6 @@ export const Store = types
       const response = yield api.get("games", {
         searchParams: {
           id: gameId,
-        },
-        headers: {
-          Authorization: `Bearer ${self.token as string}`,
         },
       });
 
@@ -147,9 +151,6 @@ export const Store = types
       const response = yield api.get("streams", {
         searchParams: {
           user_id: self.user.id,
-        },
-        headers: {
-          Authorization: `Bearer ${self.token as string}`,
         },
       });
 

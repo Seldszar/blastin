@@ -1,7 +1,6 @@
 import "setimmediate";
 
 import { applySnapshot } from "mobx-state-tree";
-import { NextComponentType, NextPageContext } from "next";
 import { createContext, useContext } from "react";
 import uniqueString from "unique-string";
 
@@ -10,26 +9,7 @@ import { Store, StoreInstance } from "./models";
 export * from "./models";
 
 export const StoreContext = createContext<StoreInstance>(Store.create());
-export const useStore = () => useContext<StoreInstance>(StoreContext);
-
-export function withStore<P, C = NextPageContext>(ComposedComponent: NextComponentType<C, any, P>) {
-  const WithStoreWrapper = (props: P) => {
-    return (
-      <StoreContext.Consumer>
-        {(store) => <ComposedComponent store={store} {...props} />}
-      </StoreContext.Consumer>
-    );
-  };
-
-  WithStoreWrapper.displayName = `withStore(${
-    ComposedComponent.displayName ?? ComposedComponent.name
-  })`;
-
-  WithStoreWrapper.getInitialProps = ComposedComponent.getInitialProps;
-  WithStoreWrapper.origGetInitialProps = (ComposedComponent as any).origGetInitialProps;
-
-  return WithStoreWrapper;
-}
+export const useStore = (): StoreInstance => useContext<StoreInstance>(StoreContext);
 
 let store: StoreInstance;
 
