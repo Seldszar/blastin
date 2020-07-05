@@ -76,6 +76,9 @@ export const eventRegistry = new Map<EventType, EventDescriptor>([
           </>
         );
       },
+      content(event) {
+        return event.data.comment && <blockquote>{event.data.comment}</blockquote>;
+      },
     },
   ],
   [
@@ -116,6 +119,9 @@ export const eventRegistry = new Map<EventType, EventDescriptor>([
             {getSubscriptionPlanName(event.data.subscriptionPlan)})
           </>
         );
+      },
+      content(event) {
+        return event.data.comment && <blockquote>{event.data.comment}</blockquote>;
       },
     },
   ],
