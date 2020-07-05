@@ -1,4 +1,4 @@
-import { types, Instance, getRoot } from "mobx-state-tree";
+import { types, Instance, getRoot, cast } from "mobx-state-tree";
 import uniqueString from "unique-string";
 
 import { queryParser } from "lib/helpers";
@@ -14,14 +14,14 @@ export const Filter = types
     query: types.string,
   })
   .views((self) => ({
-    get filterCallback(): (data: any) => boolean {
+    get filterCallback(): (event: EventInstance) => boolean {
       if (self.query) {
         try {
           const expression = queryParser.parse(self.query);
 
-          return (data: any) => {
+          return (event: EventInstance) => {
             try {
-              return Boolean(expression.evaluate(data));
+              return Boolean(expression.evaluate(cast(event)));
             } catch {
               return false;
             }

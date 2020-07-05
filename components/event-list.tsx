@@ -12,9 +12,15 @@ export interface EventListProps {
   chunkCount?: number;
   events: EventInstance[];
   onItemClick?: (event: EventInstance) => void;
+  small?: boolean;
 }
 
-const EventList: FunctionComponent<EventListProps> = ({ events, onItemClick, chunkCount = 25 }) => {
+const EventList: FunctionComponent<EventListProps> = ({
+  events,
+  small,
+  onItemClick,
+  chunkCount = 25,
+}) => {
   const [page, setPage] = useState(0);
 
   const filteredEvents = events.slice(0, page * chunkCount);
@@ -40,6 +46,7 @@ const EventList: FunctionComponent<EventListProps> = ({ events, onItemClick, chu
             icon={eventHandler.icon}
             description={eventHandler.description(event)}
             onClick={onItemClick && (() => onItemClick(event))}
+            small={small}
           >
             {eventHandler.content?.(event) ?? null}
           </EventCard>
@@ -53,6 +60,7 @@ EventList.propTypes = {
   chunkCount: PropTypes.number,
   events: PropTypes.array.isRequired,
   onItemClick: PropTypes.func,
+  small: PropTypes.bool,
 };
 
 export default observer(EventList);

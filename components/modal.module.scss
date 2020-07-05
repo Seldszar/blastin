@@ -2,6 +2,12 @@
   @apply bg-black fixed h-screen inset-0 overflow-auto z-50;
 
   --bg-opacity: 0.9;
+
+  &.large {
+    .content {
+      @apply max-w-4xl;
+    }
+  }
 }
 
 .inner {

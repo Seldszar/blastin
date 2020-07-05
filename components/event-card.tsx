@@ -16,6 +16,7 @@ export interface EventCardProps {
   event: EventInstance;
   icon: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
+  small?: boolean;
 }
 
 const EventCard: FunctionComponent<EventCardProps> = ({
@@ -25,9 +26,14 @@ const EventCard: FunctionComponent<EventCardProps> = ({
   icon,
   event,
   onClick,
+  small,
 }) => (
   <div
-    className={clsx(styles.wrapper, { [styles.interactive]: onClick }, className)}
+    className={clsx(
+      styles.wrapper,
+      { [styles.interactive]: onClick, [styles.small]: small },
+      className
+    )}
     onClick={onClick}
   >
     <div className={styles.icon}>
@@ -56,6 +62,7 @@ EventCard.propTypes = {
   event: PropTypes.any.isRequired,
   icon: PropTypes.string.isRequired,
   onClick: PropTypes.func,
+  small: PropTypes.bool,
 };
 
 export default EventCard;

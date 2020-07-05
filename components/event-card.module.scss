@@ -8,6 +8,18 @@
       @apply bg-gray-700;
     }
   }
+
+  &.small {
+    @apply p-2 text-sm;
+
+    .icon {
+      @apply text-lg;
+    }
+
+    .message {
+      @apply text-xs;
+    }
+  }
 }
 
 .icon {

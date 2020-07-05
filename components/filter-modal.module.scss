@@ -3,10 +3,6 @@
     @apply mb-4;
   }
 
-  label {
-    @apply block;
-  }
-
   input,
   textarea {
     @apply bg-gray-900 block border-none p-2 rounded w-full;
@@ -25,8 +21,36 @@
   @apply mt-2;
 }
 
+.label {
+  @apply flex-none;
+}
+
 .queryInput {
   @apply font-mono;
+}
+
+.columns {
+  @apply flex -mx-2 mb-4;
+}
+
+.column {
+  @apply flex-1 mx-2;
+}
+
+.filteredEventsColumn {
+  @apply relative;
+
+  .field {
+    @apply absolute flex flex-col inset-0;
+  }
+
+  .control {
+    @apply flex-1 relative;
+  }
+}
+
+.filteredEvents {
+  @apply absolute bg-gray-900 inset-0 overflow-auto p-2 rounded;
 }
 
 .buttons {
