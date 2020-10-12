@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { FunctionComponent, useEffect } from "react";
+import { useMap } from "react-use";
 import useWebSocket from "react-use-websocket";
 import { parse as parseMessage, Message } from "tekko";
 
@@ -15,6 +16,8 @@ import styles from "./dashboard-layout.module.scss";
 const DashboardLayout: FunctionComponent = ({ children }) => {
   const router = useRouter();
   const store = useStore();
+
+  const [pendingMysteryGifts, { set, remove }] = useMap();
 
   const { sendMessage, readyState } = useWebSocket("wss://irc-ws.chat.twitch.tv", {
     retryOnError: true,
@@ -41,7 +44,6 @@ const DashboardLayout: FunctionComponent = ({ children }) => {
     },
   });
 
-  const pendingMysteryGifts = new Map();
   const commandHandlers = new Map<string, (message: Message) => Partial<EventInstance> | void>([
     [
       "PING",
@@ -128,9 +130,7 @@ const DashboardLayout: FunctionComponent = ({ children }) => {
 
           case "anonsubgift":
           case "subgift": {
-            const userId = tags["user-id"];
-
-            const pendingMysteryGift = pendingMysteryGifts.get(userId);
+            const pendingMysteryGift = pendingMysteryGifts[tags["user-id"] as string];
 
             if (pendingMysteryGift) {
               store.updateEventData(pendingMysteryGift.eventId, (data) => ({
@@ -140,7 +140,7 @@ const DashboardLayout: FunctionComponent = ({ children }) => {
               }));
 
               if (++pendingMysteryGift.current >= pendingMysteryGift.total) {
-                pendingMysteryGifts.delete(userId);
+                remove(tags["user-id"] as string);
               }
 
               return undefined;
@@ -165,7 +165,7 @@ const DashboardLayout: FunctionComponent = ({ children }) => {
           case "submysterygift": {
             const subscriptionCount = Number(tags["msg-param-mass-gift-count"]);
 
-            pendingMysteryGifts.set(tags["user-id"], {
+            set(tags["user-id"] as string, {
               eventId: tags.id as string,
               total: subscriptionCount,
               current: 0,
@@ -179,7 +179,7 @@ const DashboardLayout: FunctionComponent = ({ children }) => {
                 login: tags.login as string,
               },
               data: {
-                subscriptionCount: Number(tags["msg-param-mass-gift-count"]),
+                subscriptionCount: subscriptionCount,
                 subscriptionPlan: tags["msg-param-sub-plan"],
                 recipients: [],
               },
