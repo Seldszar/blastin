@@ -13,7 +13,7 @@ const IndexPage: LayoutPage = () => (
       <title>Blastin for Twitch</title>
     </Head>
 
-    <div className={styles.panel}>
+    <div className={styles.inner}>
       <svg className={styles.logo} viewBox="0 0 1041.05 200">
         <path d="M0,3.56H69.43c40.36,0,73,10.09,73,48.07,0,16.62-9.49,35.61-24.33,41.55v1.18c18.4,5.34,33.24,19.59,33.24,45.11,0,39.76-34.43,57-76,57H0ZM68.25,78.93c16.62,0,24.33-7.71,24.33-19.58S84.87,42.73,68.25,42.73H51v36.2Zm3.56,78.34c20.18,0,29.67-7.12,29.67-21.37S92,116.32,71.81,116.32H51v41Z" />
         <path d="M263.4,153.71l-12.62,42.73H181.59V3.56h51V153.71Z" />

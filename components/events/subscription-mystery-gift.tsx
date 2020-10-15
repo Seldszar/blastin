@@ -22,7 +22,7 @@ const SubscriptionMysteryGift: FunctionComponent<SubscriptionMysteryGiftProps> =
       onClick={(event) => event.stopPropagation()}
     >
       <div className={styles.toggleButton} onClick={toggle}>
-        <Icon className={styles.icon} name={expanded ? "CaretSolidDown" : "CaretSolidRight"} />
+        <Icon className={styles.icon} name={expanded ? "ChevronDown" : "ChevronRight"} />
         Recipients
       </div>
 

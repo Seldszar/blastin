@@ -1,17 +1,17 @@
 .wrapper {
-  @apply flex h-full;
+  @apply flex h-full items-center justify-center;
 }
 
-.panel {
-  @apply bg-gray-800 flex flex-col items-end justify-center max-w-2xl p-12 text-right w-full;
+.inner {
+  @apply flex flex-col items-center justify-center max-w-2xl p-12 text-center w-full;
 }
 
 .logo {
-  @apply fill-current mb-6 h-16;
+  @apply fill-current mb-4 h-16;
 }
 
 .description {
-  @apply leading-tight mb-12 text-gray-500 text-lg;
+  @apply leading-tight mb-8 text-gray-500 text-lg;
 
   p {
     @apply mb-1;

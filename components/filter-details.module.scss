@@ -30,13 +30,13 @@
   @apply absolute bottom-0 cursor-pointer flex flex-col inset-x-0 justify-end;
 
   .inner {
-    @apply bg-gray-800 border-t border-gray-900 cursor-auto flex flex-col overflow-hidden relative z-10;
+    @apply bg-gray-800 cursor-auto flex flex-col overflow-hidden relative z-10;
 
     height: calc(100% - theme("spacing.64"));
   }
 
   .topBar {
-    @apply bg-gray-800 cursor-pointer flex flex-none font-medium h-10 items-center leading-none pl-2 select-none shadow text-sm uppercase;
+    @apply bg-gray-700 cursor-pointer flex flex-none font-medium h-10 items-center leading-none pl-2 select-none text-sm uppercase;
 
     .icon {
       @apply flex-none px-2 text-xs;
@@ -64,13 +64,13 @@
   }
 
   .backdrop {
-    @apply absolute bg-black inset-0;
+    @apply absolute bg-black bg-opacity-50 inset-0;
 
-    --bg-opacity: 0.6;
+    backdrop-filter: blur(2px);
     transition: all 0.2s;
 
     &:hover {
-      --bg-opacity: 0.3;
+      @apply bg-opacity-25;
     }
   }
 

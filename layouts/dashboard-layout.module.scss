@@ -3,15 +3,15 @@
 }
 
 .streamStatus {
-  @apply bg-black flex-none;
+  @apply flex-none;
 }
 
 .main {
-  @apply flex-1 overflow-hidden;
+  @apply border-b border-gray-800 border-t flex-1 overflow-hidden;
 }
 
 .footer {
-  @apply bg-black flex h-10 items-center leading-none px-4 text-gray-600 text-sm;
+  @apply flex h-10 items-center leading-none px-4 text-gray-600 text-sm;
 }
 
 .expander {

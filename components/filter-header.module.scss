@@ -3,17 +3,15 @@
 }
 
 .title {
-  @apply cursor-pointer flex font-bold items-center -mx-2 px-2 py-px rounded text-xl truncate;
+  @apply flex flex-1 font-bold items-center -mx-2 px-2 py-px text-xl truncate;
 
   .editIcon {
     @apply ml-2 text-gray-500 text-sm;
   }
 
   &:hover {
-    @apply bg-gray-900;
-
     .editIcon {
-      @apply text-white;
+      @apply text-teal-500;
     }
   }
 }
@@ -22,6 +20,6 @@
   @apply cursor-pointer flex flex-none h-10 items-center justify-center ml-2 rounded text-gray-500 text-2xl w-10;
 
   &:hover {
-    @apply bg-gray-700 text-white;
+    @apply text-white;
   }
 }
