@@ -5,7 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useEffect, FunctionComponent, MouseEventHandler, useMemo } from "react";
 
 import { queryParser } from "lib/helpers";
-import { FilterInstance, useStore } from "stores";
+import { FilterInstance, FilterSnapshotIn, useStore } from "stores";
 
 import Button from "./button";
 import EventList from "./event-list";
@@ -17,14 +17,14 @@ import styles from "./filter-modal.module.scss";
 interface FilterModalProps extends Omit<ModalProps, "children"> {
   className?: string;
   filter: FilterInstance | null;
-  onClose?: (value?: Partial<FilterInstance>) => void;
+  onClose?: (value?: FilterSnapshotIn) => void;
   onDelete?: () => void;
 }
 
 const FilterModal: FunctionComponent<FilterModalProps> = ({ filter, onDelete, ...rest }) => {
-  const { control, errors, handleSubmit, register, reset, watch } = useForm({
+  const { control, errors, handleSubmit, register, reset, watch } = useForm<FilterSnapshotIn>({
     criteriaMode: "all",
-    defaultValues: filter ?? {},
+    defaultValues: filter ?? { title: "", query: "" },
     mode: "onChange",
   });
 
@@ -53,7 +53,7 @@ const FilterModal: FunctionComponent<FilterModalProps> = ({ filter, onDelete, ..
     }
   };
 
-  useEffect(() => reset(filter ?? {}), [filter, reset]);
+  useEffect(() => reset(filter ?? { title: "", query: "" }), [filter, reset]);
 
   return (
     <Modal large title={`${filter ? "Update" : "Create"} Filter`} {...rest}>

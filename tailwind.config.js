@@ -1,7 +1,13 @@
 const { fontFamily } = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  purge: ["./components/**/*.tsx", "./layouts/**/*.tsx", "./pages/**/*.tsx"],
+  future: {
+    defaultLineHeights: true,
+    purgeLayersByDefault: true,
+    removeDeprecatedGapUtilities: true,
+    standardFontWeights: true,
+  },
+  purge: ["{components,layouts,pages}/**/*.tsx"],
   theme: {
     fontFamily: {
       ...fontFamily,

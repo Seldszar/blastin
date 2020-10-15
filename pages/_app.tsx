@@ -1,5 +1,3 @@
-import "mobx-react-lite/batchingForReactDom";
-
 import { onSnapshot } from "mobx-state-tree";
 import NextApp from "next/app";
 import React from "react";

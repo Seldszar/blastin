@@ -1,6 +1,14 @@
 import arrayMove from "array-move";
 import ky from "ky-universal";
-import { applySnapshot, getSnapshot, types, flow, Instance } from "mobx-state-tree";
+import {
+  applySnapshot,
+  getSnapshot,
+  types,
+  flow,
+  Instance,
+  SnapshotIn,
+  SnapshotOut,
+} from "mobx-state-tree";
 
 import { Event, EventInstance } from "./event";
 import { Filter, FilterInstance } from "./filter";
@@ -194,3 +202,5 @@ export const Store = types
   });
 
 export type StoreInstance = Instance<typeof Store>;
+export type StoreSnapshotIn = SnapshotIn<typeof Store>;
+export type StoreSnapshotOut = SnapshotOut<typeof Store>;

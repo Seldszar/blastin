@@ -1,4 +1,4 @@
-import { types, Instance } from "mobx-state-tree";
+import { types, Instance, SnapshotIn, SnapshotOut } from "mobx-state-tree";
 
 export const User = types.model({
   id: types.identifier,
@@ -7,3 +7,5 @@ export const User = types.model({
 });
 
 export type UserInstance = Instance<typeof User>;
+export type UserSnapshotIn = SnapshotIn<typeof User>;
+export type UserSnapshotOut = SnapshotOut<typeof User>;

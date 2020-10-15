@@ -1,4 +1,4 @@
-import { types, Instance, getRoot, cast } from "mobx-state-tree";
+import { types, Instance, getRoot, cast, SnapshotIn, SnapshotOut } from "mobx-state-tree";
 import uniqueString from "unique-string";
 
 import { queryParser } from "lib/helpers";
@@ -71,3 +71,5 @@ export const Filter = types
   });
 
 export type FilterInstance = Instance<typeof Filter>;
+export type FilterSnapshotIn = SnapshotIn<typeof Filter>;
+export type FilterSnapshotOut = SnapshotOut<typeof Filter>;

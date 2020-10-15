@@ -1,4 +1,4 @@
-import { types, Instance } from "mobx-state-tree";
+import { types, Instance, SnapshotIn, SnapshotOut } from "mobx-state-tree";
 
 export const Game = types.model({
   id: types.identifier,
@@ -6,3 +6,5 @@ export const Game = types.model({
 });
 
 export type GameInstance = Instance<typeof Game>;
+export type GameSnapshotIn = SnapshotIn<typeof Game>;
+export type GameSnapshotOut = SnapshotOut<typeof Game>;

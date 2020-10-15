@@ -1,5 +1,5 @@
 import flat from "flat";
-import { types, Instance } from "mobx-state-tree";
+import { types, Instance, SnapshotIn, SnapshotOut } from "mobx-state-tree";
 import uniqueString from "unique-string";
 
 export const Event = types
@@ -35,3 +35,5 @@ export const Event = types
   });
 
 export type EventInstance = Instance<typeof Event>;
+export type EventSnapshotIn = SnapshotIn<typeof Event>;
+export type EventSnapshotOut = SnapshotOut<typeof Event>;
