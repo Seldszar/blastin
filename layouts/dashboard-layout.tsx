@@ -252,7 +252,7 @@ const DashboardLayout: FunctionComponent = ({ children }) => {
             },
             data: {
               bits: Number(tags.bits),
-              comment: trailing,
+              comment: trailing.replace(/\w+\d+/g, "").trim(),
             },
           };
         }
