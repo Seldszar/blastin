@@ -1,17 +1,30 @@
-const { fontFamily } = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
 
 module.exports = {
-  future: {
-    defaultLineHeights: true,
-    purgeLayersByDefault: true,
-    removeDeprecatedGapUtilities: true,
-    standardFontWeights: true,
+  purge: {
+    mode: "all",
+    content: ["src/**/*.tsx", "src/**/*.ts"],
   },
-  purge: ["{components,layouts,pages}/**/*.tsx"],
   theme: {
-    fontFamily: {
-      ...fontFamily,
-      sans: ["Noto Sans", "sans-serif"],
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      black: colors.black,
+      gray: colors.blueGray,
+      green: colors.green,
+      purple: colors.purple,
+      red: colors.red,
+      teal: colors.teal,
+      white: colors.white,
+      yellow: colors.yellow,
     },
+    extend: {
+      fontFamily: {
+        sans: ["Noto Sans", "sans-serif"],
+      },
+    },
+  },
+  variants: {
+    appearance: [],
   },
 };

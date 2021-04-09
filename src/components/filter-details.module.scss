@@ -1,0 +1,80 @@
+.wrapper {
+  @apply flex flex-col h-full relative;
+}
+
+.header {
+  @apply flex-none;
+}
+
+.body {
+  @apply flex flex-col flex-1 overflow-hidden pb-10;
+}
+
+.list {
+  @apply flex-1;
+}
+
+.listInner {
+  @apply p-4;
+}
+
+.eventCard {
+  @apply cursor-pointer;
+}
+
+.toggleButton {
+  @apply my-4;
+}
+
+.readEvents {
+  @apply absolute bottom-0 cursor-pointer flex flex-col inset-x-0 justify-end;
+
+  .inner {
+    @apply bg-gray-800 cursor-auto flex flex-col overflow-hidden relative z-10;
+
+    height: calc(100% - theme("spacing.64"));
+  }
+
+  .topBar {
+    @apply bg-gray-700 cursor-pointer flex flex-none font-medium h-10 items-center leading-none pl-2 select-none text-sm uppercase;
+
+    .icon {
+      @apply flex-none px-2 text-xs;
+    }
+
+    .title {
+      @apply flex-1;
+    }
+
+    .clearAction {
+      @apply flex flex-none h-6 items-center justify-center mx-2 rounded text-base text-gray-500 w-6;
+
+      &:hover {
+        @apply text-white;
+      }
+    }
+
+    &:hover {
+      @apply bg-gray-700;
+    }
+  }
+
+  .content {
+    @apply p-4;
+  }
+
+  .backdrop {
+    @apply absolute bg-black bg-opacity-75 inset-0;
+
+    backdrop-filter: blur(2px);
+    transition: all 0.2s;
+
+    &:hover {
+      @apply bg-opacity-50;
+    }
+  }
+
+  &.expanded {
+    @apply h-full;
+  }
+}
