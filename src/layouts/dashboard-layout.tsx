@@ -1,12 +1,12 @@
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent, useEffect, useMemo } from "react";
 import { useMap } from "react-use";
-import useWebSocket from "react-use-websocket";
+import useWebSocket, { ReadyState } from "react-use-websocket";
 import { parse as parseMessage, Message } from "tekko";
 
-import { HOSTING_PATTERN, connectionStatus } from "@/constants";
+import { HOSTING_PATTERN } from "@/constants";
 import { EventInstance, useStore } from "@/stores";
 
 import StreamStatus from "@/components/stream-status";
@@ -43,6 +43,19 @@ const DashboardLayout: FunctionComponent = ({ children }) => {
       }
     },
   });
+
+  const readyStateStyle = useMemo(() => {
+    switch (readyState) {
+      case ReadyState.CLOSED:
+        return styles.closed;
+
+      case ReadyState.CONNECTING:
+        return styles.connecting;
+
+      case ReadyState.OPEN:
+        return styles.open;
+    }
+  }, [readyState]);
 
   const commandHandlers = new Map<string, (message: Message) => Partial<EventInstance> | void>([
     [
@@ -303,7 +316,7 @@ const DashboardLayout: FunctionComponent = ({ children }) => {
       <main className={styles.main}>{children}</main>
       <footer className={styles.footer}>
         <div className={styles.socketState}>
-          <div className={clsx(styles.stateIndicator, styles[connectionStatus[readyState]])} />
+          <div className={clsx(styles.stateIndicator, readyStateStyle)} />
           Chat Connection
         </div>
         <div className={styles.expander} />

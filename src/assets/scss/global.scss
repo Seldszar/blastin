@@ -1,8 +1,8 @@
-/* purgecss start ignore */
-@tailwind base;
-/* purgecss end ignore */
-
 @import "./fabric-icons.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html {
   @apply bg-gray-900 text-white;
