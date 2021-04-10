@@ -20,6 +20,10 @@
       @apply text-xs;
     }
   }
+
+  &.read {
+    @apply opacity-25;
+  }
 }
 
 .icon {

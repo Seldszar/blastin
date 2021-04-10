@@ -33,7 +33,11 @@ const EventCard: FunctionComponent<EventCardProps> = ({
   <div
     className={clsx(
       styles.wrapper,
-      { [styles.interactive]: onClick, [styles.small]: small },
+      styles[event.readState],
+      {
+        [styles.interactive]: onClick,
+        [styles.small]: small,
+      },
       className
     )}
     onClick={onClick}
