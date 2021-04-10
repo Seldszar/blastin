@@ -1,5 +1,5 @@
 .wrapper {
-  @apply flex leading-snug p-4 rounded;
+  @apply flex leading-snug p-4;
 
   &.interactive {
     @apply cursor-pointer;
