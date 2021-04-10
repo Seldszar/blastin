@@ -38,7 +38,7 @@ export const Filter = types
     get events(): EventInstance[] {
       return getRoot<StoreInstance>(self)
         .events.filter((event) => self.filterCallback(event))
-        .sort((a, b) => a.date.getTime() - b.date.getTime());
+        .sort((a, b) => b.date.getTime() - a.date.getTime());
     },
   }))
   .views((self) => ({
