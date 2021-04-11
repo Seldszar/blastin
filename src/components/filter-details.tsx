@@ -67,8 +67,7 @@ const FilterDetails = () => {
 
           <div className={styles.body}>
             <Scroller className={styles.list} innerClassName={styles.listInner}>
-              <EventList events={filter.unreadEvents} onItemClick={(event) => event.markAsRead()} />
-              <EventList events={filter.readEvents} />
+              <EventList events={filter.events} onItemClick={(event) => event.markAsRead()} />
             </Scroller>
           </div>
         </div>

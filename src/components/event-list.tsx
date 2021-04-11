@@ -47,9 +47,11 @@ const EventList: FunctionComponent<EventListProps> = ({
             event={event}
             icon={eventHandler.icon}
             description={eventHandler.description(event)}
-            onClick={onItemClick && (() => onItemClick(event))}
-            small={small}
             withEventValues={withEventValues}
+            small={small}
+            onClick={
+              onItemClick && event.readState === "unread" ? () => onItemClick(event) : undefined
+            }
           >
             {eventHandler.content?.(event) ?? null}
           </EventCard>

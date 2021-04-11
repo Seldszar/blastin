@@ -25,37 +25,37 @@ export function initializeStore(
     store = Store.create({
       filters: [
         {
-          id: nanoid(),
+          id: "all",
           icon: "Home",
           title: "All Events",
           query: "",
         },
         {
-          id: nanoid(),
+          id: "anniversaries",
           icon: "Cake",
           title: "Subscription Anniversaries",
           query: 'type == "resub" and (data.cumulativeMonths % 12) == 0',
         },
         {
-          id: nanoid(),
+          id: "subscriptions",
           icon: "AddFavorite",
           title: "New Subscriptions",
           query: 'type == "sub"',
         },
         {
-          id: nanoid(),
+          id: "cheers",
           icon: "Diamond",
           title: "Cheers",
           query: 'type == "cheer"',
         },
         {
-          id: nanoid(),
+          id: "gifts",
           icon: "GiftboxOpen",
           title: "Subscription Gifts",
           query: 'type == "subgift" or type == "anonsubgift" or type == "submysterygift"',
         },
         {
-          id: nanoid(),
+          id: "raids",
           icon: "AddGroup",
           title: "Raids & Hosts",
           query: 'type == "raid" or type == "host"',
