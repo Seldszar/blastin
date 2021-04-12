@@ -3,11 +3,11 @@
 }
 
 .sidebar {
-  @apply flex-none overflow-auto;
+  @apply bg-gray-800 flex-none overflow-auto;
 }
 
 .main {
-  @apply bg-gray-800 flex-1 overflow-auto;
+  @apply flex-1 overflow-auto;
 }
 
 .scrollButton {

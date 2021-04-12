@@ -1,9 +1,5 @@
 .wrapper {
-  @apply flex flex-col w-16;
-
-  hr {
-    @apply border-gray-800 border-t mx-4;
-  }
+  @apply flex flex-col w-14;
 }
 
 .helper {

@@ -1,9 +1,9 @@
 .wrapper {
-  @apply flex h-16 items-center leading-snug;
+  @apply flex h-14 items-center leading-snug;
 }
 
 .profileImage {
-  @apply flex-none overflow-hidden self-stretch w-16;
+  @apply flex-none overflow-hidden self-stretch w-14;
 
   img {
     @apply h-full object-center object-cover w-full;
@@ -21,7 +21,7 @@
   @apply px-2;
 
   header {
-    @apply text-gray-600 text-sm;
+    @apply text-gray-500 text-sm;
   }
 }
 

@@ -166,3 +166,5 @@ export const eventRegistry = new Map<EventType, EventDescriptor>([
     },
   ],
 ]);
+
+export const readStateOrder = ["unread", "read"];

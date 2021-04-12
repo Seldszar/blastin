@@ -1,6 +1,7 @@
 import { types, Instance, getRoot, cast, SnapshotIn, SnapshotOut } from "mobx-state-tree";
 import { nanoid } from "nanoid";
 
+import { readStateOrder } from "@/constants";
 import { queryParser } from "@/helpers";
 
 import { EventInstance } from "./event";
@@ -38,7 +39,20 @@ export const Filter = types
     get events(): EventInstance[] {
       return getRoot<StoreInstance>(self)
         .events.filter((event) => self.filterCallback(event))
-        .sort((a, b) => b.date.getTime() - a.date.getTime());
+        .sort((left, right) => {
+          const leftState = readStateOrder.indexOf(left.readState);
+          const rightState = readStateOrder.indexOf(right.readState);
+
+          if (leftState < rightState) {
+            return -1;
+          }
+
+          if (leftState > rightState) {
+            return 1;
+          }
+
+          return right.date.getTime() - left.date.getTime();
+        });
     },
   }))
   .views((self) => ({

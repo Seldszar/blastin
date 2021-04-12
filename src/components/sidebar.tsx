@@ -82,8 +82,6 @@ const Sidebar: FunctionComponent<SortableProps> = ({ className, filters, onCreat
         onSortEnd={onSortEnd}
       />
 
-      {filters.length > 0 && <hr />}
-
       <SidebarLink icon="Add" onClick={onCreateFilter} />
 
       <div className={styles.expander} />

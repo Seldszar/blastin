@@ -1,5 +1,5 @@
 .wrapper {
-  @apply cursor-pointer flex items-center justify-center my-2;
+  @apply cursor-pointer;
 
   // &:not(:hover) {
   //   .title {
@@ -9,7 +9,7 @@
 }
 
 .inner {
-  @apply flex h-12 items-center justify-center overflow-hidden relative rounded-md text-gray-500 w-12;
+  @apply flex h-14 items-center justify-center overflow-hidden relative text-gray-500;
 
   &:hover {
     @apply text-white;
@@ -21,7 +21,7 @@
 }
 
 .unreadBadge {
-  @apply absolute bg-red-500 border-gray-800 border-l-2 border-t-2 bottom-0 font-bold px-1 right-0 rounded-tl-md text-xs;
+  @apply absolute bg-teal-500 bottom-0 px-1 right-0 text-xs;
 }
 
 .title {
@@ -48,17 +48,11 @@
 
     &:hover {
       @apply bg-gray-700;
-
-      .unreadBadge {
-        @apply border-gray-700;
-      }
     }
 
     &.active {
-      @apply bg-teal-500;
-
-      .unreadBadge {
-        @apply border-teal-500;
+      .icon {
+        @apply text-teal-500;
       }
     }
   }
