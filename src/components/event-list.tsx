@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import PropTypes from "prop-types";
-import { useState, FunctionComponent } from "react";
+import { useMemo, useState, FunctionComponent } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 
 import { eventRegistry, EventType } from "@/constants";
@@ -27,14 +27,17 @@ const EventList: FunctionComponent<EventListProps> = ({
 }) => {
   const [page, setPage] = useState(0);
 
-  const filteredEvents = events.slice(0, page * chunkCount);
+  const filteredEvents = useMemo(() => events.slice(0, page * chunkCount), [
+    events,
+    chunkCount,
+    page,
+  ]);
 
   return (
     <InfiniteScroll
       hasMore={events.length > filteredEvents.length}
       loadMore={setPage}
       useWindow={false}
-      threshold={0}
     >
       {filteredEvents.map((event) => {
         const eventHandler = eventRegistry.get(event.type as EventType);

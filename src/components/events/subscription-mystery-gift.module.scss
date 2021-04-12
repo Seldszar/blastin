@@ -2,6 +2,27 @@
   @apply text-sm;
 }
 
+.collapsed {
+  .inner {
+    @apply overflow-hidden;
+
+    mask-image: linear-gradient(rgba(0, 0, 0, 1) calc(100% - 20px), rgba(0, 0, 0, 0));
+    max-height: 50px;
+  }
+}
+
+.showMore {
+  @apply mt-1;
+
+  span {
+    @apply font-bold text-gray-500 text-xs uppercase;
+
+    &:hover {
+      @apply text-white;
+    }
+  }
+}
+
 .recipients {
   @apply flex flex-wrap -m-px;
 }
