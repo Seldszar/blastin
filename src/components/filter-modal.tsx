@@ -39,15 +39,13 @@ const FilterModal: FunctionComponent<FilterModalProps> = ({ filter, onDelete, ..
   const query = watch("query");
 
   const filteredEvents = useMemo(() => {
-    let events = store.events.toJSON();
+    let events = store.profileEvents;
 
     try {
       if (query) {
         events = events.filter((event) => Boolean(queryParser.evaluate(query, cast(event))));
       }
-    } catch {
-      // ...
-    }
+    } catch {} // eslint-disable-line no-empty
 
     return events;
   }, [query]);

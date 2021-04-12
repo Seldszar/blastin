@@ -17,7 +17,7 @@
 }
 
 .icon {
-  @apply text-xl;
+  @apply text-2xl;
 }
 
 .unreadBadge {
@@ -39,10 +39,6 @@
 }
 
 .opaque {
-  .icon {
-    @apply text-2xl;
-  }
-
   .inner {
     @apply bg-gray-800 text-white;
 

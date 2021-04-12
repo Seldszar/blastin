@@ -317,7 +317,7 @@ const DashboardLayout: FunctionComponent = ({ children }) => {
       <footer className={styles.footer}>
         <div className={styles.socketState}>
           <div className={clsx(styles.stateIndicator, readyStateStyle)} />
-          Chat Connection
+          Twitch Chat
         </div>
         <div className={styles.expander} />
         <div className={styles.credits}>

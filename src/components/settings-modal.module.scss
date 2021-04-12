@@ -1,7 +1,14 @@
+.label {
+  @apply mb-2;
+}
+
 .buttons {
-  @apply flex -m-1;
 }
 
 .button {
-  @apply flex-1 m-1;
+  @apply mb-2;
+
+  &:last-child {
+    @apply mb-0;
+  }
 }

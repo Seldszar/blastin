@@ -8,7 +8,7 @@ interface IconProps {
 }
 
 const Icon: FunctionComponent<IconProps> = ({ className, name }) => (
-  <span className={clsx(`ms-Icon ms-Icon--${name}`, className)} />
+  <span className={clsx(`mdi mdi-${name}`, className)} />
 );
 
 Icon.propTypes = {

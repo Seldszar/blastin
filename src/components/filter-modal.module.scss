@@ -22,7 +22,7 @@
 }
 
 .label {
-  @apply flex-none;
+  @apply flex-none font-bold leading-none text-sm;
 }
 
 .queryInput {

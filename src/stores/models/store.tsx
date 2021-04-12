@@ -27,6 +27,9 @@ export const Store = types
     token: types.maybe(types.string),
   })
   .views((self) => ({
+    get profileEvents() {
+      return self.events.filter((event) => event.channel === self.user?.login);
+    },
     exportFilters() {
       return {
         version: self.version,

@@ -26,37 +26,37 @@ export function initializeStore(
       filters: [
         {
           id: "all",
-          icon: "Home",
+          icon: "home",
           title: "All Events",
           query: "",
         },
         {
           id: "anniversaries",
-          icon: "Cake",
+          icon: "cake",
           title: "Subscription Anniversaries",
           query: 'type == "resub" and (data.cumulativeMonths % 12) == 0',
         },
         {
           id: "subscriptions",
-          icon: "AddFavorite",
+          icon: "star-plus",
           title: "New Subscriptions",
           query: 'type == "sub"',
         },
         {
           id: "cheers",
-          icon: "Diamond",
+          icon: "diamond",
           title: "Cheers",
           query: 'type == "cheer"',
         },
         {
           id: "gifts",
-          icon: "GiftboxOpen",
+          icon: "gift",
           title: "Subscription Gifts",
           query: 'type == "subgift" or type == "anonsubgift" or type == "submysterygift"',
         },
         {
           id: "raids",
-          icon: "AddGroup",
+          icon: "account-group",
           title: "Raids & Hosts",
           query: 'type == "raid" or type == "host"',
         },

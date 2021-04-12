@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { FunctionComponent, useState } from "react";
 import { AutoSizer, List } from "react-virtualized";
 
-import AllIconNames from "@/data/AllIconNames.json";
+import icons from "@/data/icons.json";
 
 import Icon from "./icon";
 
@@ -18,17 +18,17 @@ interface Props {
 const IconPicker: FunctionComponent<Props> = ({ className, value, onChange }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredIcons = AllIconNames.filter((icon) =>
-    searchQuery ? new RegExp(searchQuery, "i").test(icon.name) : true
+  const filteredIcons = icons.filter((icon) =>
+    searchQuery ? new RegExp(searchQuery, "i").test(icon) : true
   );
-  const rows = new Array<Array<{ name: string; unicode: string }>>();
+  const rows = new Array<string[]>();
 
   let selectedRow = 0;
 
   for (let index = 0; index < filteredIcons.length; index += 6) {
     const row = filteredIcons.slice(index, index + 6);
 
-    if (row.some((icon) => icon.name === value)) {
+    if (row.some((icon) => icon === value)) {
       selectedRow = rows.length;
     }
 
@@ -58,14 +58,14 @@ const IconPicker: FunctionComponent<Props> = ({ className, value, onChange }) =>
             rowRenderer={({ key, index, style }) => (
               <div key={key} className={styles.row} style={style}>
                 {rows[index].map((icon) => (
-                  <div key={icon.name} className={styles.item}>
+                  <div key={icon} className={styles.item}>
                     <div
                       className={clsx(styles.icon, {
-                        [styles.selected]: value === icon.name,
+                        [styles.selected]: value === icon,
                       })}
-                      onClick={() => onChange?.(icon.name)}
+                      onClick={() => onChange?.(icon)}
                     >
-                      <Icon name={icon.name} />
+                      <Icon name={icon} />
                     </div>
                   </div>
                 ))}

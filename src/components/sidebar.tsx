@@ -82,12 +82,12 @@ const Sidebar: FunctionComponent<SortableProps> = ({ className, filters, onCreat
         onSortEnd={onSortEnd}
       />
 
-      <SidebarLink icon="Add" onClick={onCreateFilter} />
+      <SidebarLink icon="plus" onClick={onCreateFilter} />
 
       <div className={styles.expander} />
 
-      <SidebarLink icon="Settings" onClick={() => toggleModal(true)} />
-      <SidebarLink icon="PowerButton" onClick={onLogout} />
+      <SidebarLink icon="cog" onClick={() => toggleModal(true)} />
+      <SidebarLink icon="power" onClick={onLogout} />
 
       <SettingsModal isOpen={modalOpen} onClose={() => toggleModal(false)} />
     </div>

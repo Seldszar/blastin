@@ -31,7 +31,7 @@ export const eventRegistry = new Map<EventType, EventDescriptor>([
   [
     EventType.AnonymousSubscriptionGift,
     {
-      icon: "GiftboxOpen",
+      icon: "gift",
       description(event) {
         return (
           <>
@@ -45,7 +45,7 @@ export const eventRegistry = new Map<EventType, EventDescriptor>([
   [
     EventType.BitsBadgeTier,
     {
-      icon: "DoubleChevronUp",
+      icon: "diamond",
       description(event) {
         return (
           <>
@@ -59,7 +59,7 @@ export const eventRegistry = new Map<EventType, EventDescriptor>([
   [
     EventType.Cheer,
     {
-      icon: "Diamond",
+      icon: "diamond",
       description(event) {
         return (
           <>
@@ -75,7 +75,7 @@ export const eventRegistry = new Map<EventType, EventDescriptor>([
   [
     EventType.GiftPaidUpgrade,
     {
-      icon: "CPlusPlusLanguage",
+      icon: "star-shooting",
       description(event) {
         return (
           <>
@@ -88,7 +88,7 @@ export const eventRegistry = new Map<EventType, EventDescriptor>([
   [
     EventType.Raid,
     {
-      icon: "Group",
+      icon: "account-group",
       description(event) {
         return (
           <>
@@ -102,7 +102,7 @@ export const eventRegistry = new Map<EventType, EventDescriptor>([
   [
     EventType.Resubscription,
     {
-      icon: "FavoriteStar",
+      icon: "star",
       description(event) {
         return (
           <>
@@ -119,7 +119,7 @@ export const eventRegistry = new Map<EventType, EventDescriptor>([
   [
     EventType.Ritual,
     {
-      icon: "AddFriend",
+      icon: "account-plus",
       description() {
         return <>New viewer ritual</>;
       },
@@ -128,7 +128,7 @@ export const eventRegistry = new Map<EventType, EventDescriptor>([
   [
     EventType.Subscription,
     {
-      icon: "FavoriteStar",
+      icon: "star-plus",
       description(event) {
         return <>New subscription ({getSubscriptionPlanName(event.data.subscriptionPlan)})</>;
       },
@@ -137,7 +137,7 @@ export const eventRegistry = new Map<EventType, EventDescriptor>([
   [
     EventType.SubscriptionGift,
     {
-      icon: "GiftboxOpen",
+      icon: "gift",
       description(event) {
         return (
           <>
@@ -151,7 +151,7 @@ export const eventRegistry = new Map<EventType, EventDescriptor>([
   [
     EventType.SubscriptionMysteryGift,
     {
-      icon: "TeamFavorite",
+      icon: "gift",
       description(event) {
         return (
           <>

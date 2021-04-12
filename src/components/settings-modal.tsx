@@ -54,21 +54,20 @@ const SettingsModal: FunctionComponent<SettingsModalProps> = ({ ...rest }) => {
   return (
     <Modal title="Settings" {...rest}>
       {() => (
-        <fieldset>
-          <legend>Filters</legend>
+        <div className={styles.field}>
           <div className={styles.buttons}>
             <div className={styles.button}>
-              <Button icon="CloudDownload" block onClick={handleImport}>
-                Import
+              <Button block onClick={handleImport}>
+                Import Filters
               </Button>
             </div>
             <div className={styles.button}>
-              <Button icon="CloudUpload" block onClick={handleExport}>
-                Export
+              <Button block onClick={handleExport}>
+                Export Filters
               </Button>
             </div>
           </div>
-        </fieldset>
+        </div>
       )}
     </Modal>
   );

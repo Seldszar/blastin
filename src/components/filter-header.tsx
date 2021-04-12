@@ -24,10 +24,10 @@ const FilterHeader: FunctionComponent<Props> = ({
   <div className={clsx(styles.wrapper, className)}>
     <div className={styles.title}>{filter.title}</div>
     <div className={styles.actionButton} onClick={onUpdateClick}>
-      <Icon name="Edit" />
+      <Icon name="pencil" />
     </div>
     <div className={styles.actionButton} onClick={onClearClick}>
-      <Icon name="CheckMark" />
+      <Icon name="check-all" />
     </div>
   </div>
 );

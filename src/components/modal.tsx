@@ -34,7 +34,7 @@ const Modal: FunctionComponent<ModalProps> = ({ children, isOpen, large, onClose
           onMouseUp={(event) => event.stopPropagation()}
         >
           <button type="button" className={styles.closeButton} onClick={() => close()}>
-            <Icon name="Cancel" />
+            <Icon name="close" />
           </button>
 
           {title && <h1 className={styles.title}>{title}</h1>}

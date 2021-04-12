@@ -1,23 +1,13 @@
 .wrapper {
-  @apply flex items-center justify-between px-4 py-2;
+  @apply flex h-14 items-center pl-4 pr-2 py-2 text-xl;
 }
 
 .title {
-  @apply flex flex-1 font-bold items-center -mx-2 px-2 py-px text-xl truncate;
-
-  .editIcon {
-    @apply ml-2 text-gray-500 text-sm;
-  }
-
-  &:hover {
-    .editIcon {
-      @apply text-teal-500;
-    }
-  }
+  @apply flex-1 font-bold truncate;
 }
 
 .actionButton {
-  @apply cursor-pointer flex flex-none h-10 items-center justify-center ml-2 rounded text-gray-500 text-2xl w-10;
+  @apply cursor-pointer flex flex-none h-10 items-center justify-center ml-2 rounded text-gray-500 w-10;
 
   &:hover {
     @apply text-white;

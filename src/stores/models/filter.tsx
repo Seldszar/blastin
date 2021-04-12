@@ -37,8 +37,10 @@ export const Filter = types
   }))
   .views((self) => ({
     get events(): EventInstance[] {
-      return getRoot<StoreInstance>(self)
-        .events.filter((event) => self.filterCallback(event))
+      const store = getRoot<StoreInstance>(self);
+
+      return store.profileEvents
+        .filter((event) => self.filterCallback(event))
         .sort((left, right) => {
           const leftState = readStateOrder.indexOf(left.readState);
           const rightState = readStateOrder.indexOf(right.readState);

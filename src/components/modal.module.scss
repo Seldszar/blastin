@@ -29,21 +29,16 @@
 }
 
 .closeButton {
-  @apply absolute flex h-10 items-center justify-center leading-none rounded-full text-lg w-10;
+  @apply absolute flex h-10 items-center justify-center leading-none text-gray-500 text-2xl w-10;
 
   right: theme("spacing.2");
   top: theme("spacing.2");
-  transition: all 0.2s;
 
   &:hover {
-    @apply bg-gray-700;
-  }
-
-  &:focus {
-    @apply ring;
+    @apply text-white;
   }
 }
 
 .title {
-  @apply font-medium mb-4 text-xl;
+  @apply font-bold mb-4 text-xl;
 }
